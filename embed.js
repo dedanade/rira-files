@@ -1,8 +1,19 @@
-
 const newVariantPrice = (document.getElementById('product-variant-price')|| {})
   .value;
   
-  if (newVariantPrice != ""){
+const onePriceQty = (document.getElementById('product_price_hidden')|| {})
+  .value;
+if (onePriceQty > 0){
+    const container = document.getElementById('one_price_container');
+    container.style.display = 'block';
+   const input = container.querySelector('input');
+   input.setAttribute("required", "");
+$('#show_Product_Quantity').on('keyup click', function() {
+  const tot = $('#product_price_hidden').val() * this.value;
+  const total = `That's ₦${tot.toLocaleString()}`;
+  $('#show_Product_total').val(total);
+});
+} else {
     const selectPromoPrice = document.getElementById('selectPromoPrice');
     const container = document.getElementById('variant_price_Quanity_container');
     container.style.display = 'block';
@@ -17,19 +28,6 @@ const newVariantPrice = (document.getElementById('product-variant-price')|| {})
     el.value = opt;
     selectPromoPrice.appendChild(el);
   }
-}
-const onePriceQty = (document.getElementById('product_price_hidden')|| {})
-  .value;
-if (onePriceQty > 0 && newVariantPrice === "" ){
-    const container = document.getElementById('one_price_container');
-    container.style.display = 'block';
-   const input = container.querySelector('input');
-   input.setAttribute("required", "");
-$('#show_Product_Quantity').on('keyup click', function() {
-  const tot = $('#product_price_hidden').val() * this.value;
-  const total = `That's ₦${tot.toLocaleString()}`;
-  $('#show_Product_total').val(total);
-});
 };
 
 const newVariantColours = (document.getElementById('product-variant-color')|| {})
