@@ -73,7 +73,6 @@ const creaEmbedOrderForm = document.querySelector('.embed-order-form');
 if (creaEmbedOrderForm)
 creaEmbedOrderForm.addEventListener('submit', (e) =>{
     e.preventDefault();
-    console.log('dfghjkl');
 const submitButton = e.submitter;
 const email = (document.getElementById('embedEmail') || {}).value;
 const name = (document.getElementById('embedName') || {}).value;
