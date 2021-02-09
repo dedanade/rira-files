@@ -108,7 +108,7 @@ submitButton.classList.add('btnLoadingSpiner');
 submitButton.disabled = true;
 setTimeout(() => {
 submitButton.classList.remove('btnLoadingSpiner'), submitButton.disabled=false;
-}, 20000);
+}, 200000);
 createOrderAPI(businessAccount, product, name, 
 email, address, state, area, phone, altphone, productEmbedQty, 
 productEmbedTotal, colour, size, submitButton)
@@ -147,11 +147,11 @@ const res = await axios({
     const orderId = res.data.data.newOrder._id;
 
     if (res.data.status === 'success') {
-        console.log(res.data);
         window.location.assign(`https://rirapay.com/orderInfo/${orderId}`);
     }
   } catch (err) {
     stopLoadingBtnSpinner(submitButton);
       alert(err.response.data.message);
+    console.log(err);
   };
 };
