@@ -20,7 +20,7 @@ const newVariantPrice = (document.getElementById('product-variant-price')|| {})
 }
 const onePriceQty = (document.getElementById('product_price_hidden')|| {})
   .value;
-if (onePriceQty > 0 && newVariantPrice === "" ){
+if (onePriceQty > 0 ){
     const container = document.getElementById('one_price_container');
     container.style.display = 'block';
    const input = container.querySelector('input');
