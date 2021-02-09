@@ -127,7 +127,7 @@ total, colour, size, submitButton) => {
 try{
 const res = await axios({
     method: 'POST',
-    url:'http://127.0.0.1:3000/api/v1/orders',
+    url:'http://rirapay.com/api/v1/orders',
       data: {
         businessAccount,
         product,
