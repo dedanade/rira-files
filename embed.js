@@ -8,12 +8,20 @@ if (onePriceQty > 0){
     container.style.display = 'block';
    const input = container.querySelector('input');
    input.setAttribute("required", "");
-$('#show_Product_Quantity').on('keyup click', function() {
-  const tot = $('#product_price_hidden').val() * this.value;
+  function changePrice(evalue) { 
+  const tot = document.getElementById('product_price_hidden').value * evalue;
   const total = `That's ₦${tot.toLocaleString()}`;
-  $('#show_Product_total').val(total);
-});
-} else {
+  document.querySelector('#show_Product_total').value =total;
+};
+document.querySelector('#show_Product_Quantity').addEventListener('click', (e)=> {
+  const evalue = e.target.value
+  changePrice(evalue)
+  });
+document.querySelector('#show_Product_Quantity').addEventListener('keyup', (e)=> {
+  const evalue = e.target.value
+  changePrice(evalue)
+  });
+}  else {
     const selectPromoPrice = document.getElementById('selectPromoPrice');
     const container = document.getElementById('variant_price_Quanity_container');
     container.style.display = 'block';
