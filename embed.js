@@ -127,12 +127,6 @@ if (creaEmbedOrderForm)
       var productEmbedTotal = parseInt(total);
     }
 
-    submitButton.classList.add("btnLoadingSpiner");
-    submitButton.disabled = true;
-    setTimeout(() => {
-      submitButton.classList.remove("btnLoadingSpiner"),
-        (submitButton.disabled = false);
-    }, 200000);
     createOrderAPI(
       businessAccount,
       product,
@@ -151,10 +145,6 @@ if (creaEmbedOrderForm)
     );
   });
 
-const stopLoadingBtnSpinner = (submitButton) => {
-  submitButton.classList.remove("btnLoadingSpiner");
-  submitButton.disabled = false;
-};
 
 const createOrderAPI = async (
   businessAccount,
@@ -199,7 +189,6 @@ const createOrderAPI = async (
       window.location.assign(`https://rirapay.com/orderInfo/${orderId}`);
     }
   } catch (err) {
-    stopLoadingBtnSpinner(submitButton);
     alert(err.response.data.message);
     console.log(err);
   }
