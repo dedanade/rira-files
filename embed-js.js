@@ -9,7 +9,7 @@ const newVariantPrice = (document.getElementById('product-variant-price')|| {})
    const select = container.querySelector('select');
    select.setAttribute("required", "");
   const PromoQtyArray = newVariantPrice.split(',');
-  const newPromoQtyArray = PromoQtyArray.filter(e => e !== ' 0 = 0 Naira');
+  const newPromoQtyArray = PromoQtyArray.filter(e => e !== ' = ₦');
   for (var i = 0; i < newPromoQtyArray.length; i++) {
     var opt = newPromoQtyArray[i];
     var el = document.createElement('option');
@@ -73,7 +73,7 @@ const creaEmbedOrderForm = document.querySelector('.embed-order-form');
 if (creaEmbedOrderForm)
 creaEmbedOrderForm.addEventListener('submit', (e) =>{
     e.preventDefault();
-const submitButton = e.submitter;
+const submitButton = creaEmbedOrderForm.querySelector('[type="submit"]');;
 const email = (document.getElementById('embedEmail') || {}).value;
 const name = (document.getElementById('embedName') || {}).value;
 const address = (document.getElementById('embedAddress') || {}).value;
@@ -100,7 +100,7 @@ if (onePriceQty > 0) {
   } else {
     var productQtyValue = document.getElementById('selectPromoPrice').value;
     var productEmbedQty = productQtyValue.split('=')[0].replace(/^\s+|\s+$/gm, '');
-    const total = productQtyValue.split('=')[1].split(' ')[1];
+    const total = productQtyValue.split('= ₦')[1];
     var productEmbedTotal = parseInt(total);
   }
 
