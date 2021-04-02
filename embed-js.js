@@ -163,7 +163,7 @@ const res = await axios({
     }
   } catch (err) {
     stopLoadingBtnSpinner(submitButton);
-      alert(err.response.data.message);
     console.log(err);
+      alert(err.response);
   };
 };
