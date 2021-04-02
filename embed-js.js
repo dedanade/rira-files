@@ -158,10 +158,7 @@ const res = await axios({
           window.location.assign(`${thankYouPage}?riraEmbedId=${orderId}`);
         }
       } else {
-        showAlert('success', 'Your Order details was created Successfully!');
-        window.setTimeout(() => {
-          location.assign(`/orderInfo/${orderId}`);
-        }, 1000);
+        window.location.assign(`https://rirapay.com/orderInfo/${orderId}`);
       }
     }
   } catch (err) {
