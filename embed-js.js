@@ -163,7 +163,8 @@ const res = await axios({
     }
   } catch (err) {
     stopLoadingBtnSpinner(submitButton);
-    console.log(err);
-      alert(err.response);
+   if (err.response) {
+      alert('error', err.response.data.message);
+    } else alert('error', `Unable to create order, kindly retry.Thanks`);
   };
 };
