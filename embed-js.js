@@ -164,7 +164,7 @@ const res = await axios({
   } catch (err) {
     stopLoadingBtnSpinner(submitButton);
    if (err.response) {
-      alert('error', err.response.data.message);
-    } else alert('error', `Unable to create order, kindly retry.Thanks`);
+      alert(err.response.data.message);
+    } else alert(`Unable to create this order, kindly retry.Thanks`);
   };
 };
