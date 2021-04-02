@@ -147,7 +147,22 @@ const res = await axios({
     const orderId = res.data.data.newOrder._id;
 
     if (res.data.status === 'success') {
-        window.location.assign(`https://rirapay.com/orderInfo/${orderId}`);
+      const orderId = res.data.data.newOrder._id;
+      const thankYouPage = res.data.data.product.facebookPixel.thankYouPage;
+      if (thankYouPage) {
+        if (thankYouPage.indexOf('http') === -1) {
+          window.location.assign(
+            `http://${thankYouPage}?riraEmbedId=${orderId}`
+          );
+        } else {
+          window.location.assign(`${thankYouPage}?riraEmbedId=${orderId}`);
+        }
+      } else {
+        showAlert('success', 'Your Order details was created Successfully!');
+        window.setTimeout(() => {
+          location.assign(`/orderInfo/${orderId}`);
+        }, 1000);
+      }
     }
   } catch (err) {
     stopLoadingBtnSpinner(submitButton);
