@@ -17,17 +17,19 @@ if (onePriceQty > 0) {
     .value;
   const selectPromoPrice = document.getElementById("selectPromoPrice");
   const container = document.getElementById("variant_price_Quanity_container");
-  container.style.display = "block";
-  const select = container.querySelector("select");
-  select.setAttribute("required", "");
-  const PromoQtyArray = newVariantPrice.split(",");
-  const newPromoQtyArray = PromoQtyArray.filter((e) => e !== " = ₦");
-  for (var i = 0; i < newPromoQtyArray.length; i++) {
-    var opt = newPromoQtyArray[i];
-    var el = document.createElement("option");
-    el.textContent = opt;
-    el.value = opt;
-    selectPromoPrice.appendChild(el);
+  if (container.style.display === "none") {
+    container.style.display = "block";
+    const select = container.querySelector("select");
+    select.setAttribute("required", "");
+    const PromoQtyArray = newVariantPrice.split(",");
+    const newPromoQtyArray = PromoQtyArray.filter((e) => e !== " = ₦");
+    for (var i = 0; i < newPromoQtyArray.length; i++) {
+      var opt = newPromoQtyArray[i];
+      var el = document.createElement("option");
+      el.textContent = opt;
+      el.value = opt;
+      selectPromoPrice.appendChild(el);
+    }
   }
   selectPromoPrice.addEventListener("change", (e) => {
     const justify_delivery_info = document.getElementById("all-del-info");
@@ -46,17 +48,19 @@ const newVariantColours = (
 
 if (newVariantColours != "") {
   const container = document.getElementById("variant_colours_container");
-  container.style.display = "block";
-  const select = container.querySelector("select");
-  select.setAttribute("required", "");
-  const selectColours = document.getElementById("selectColours");
-  const coloursOptions = newVariantColours.split(",");
-  for (var i = 0; i < coloursOptions.length; i++) {
-    var opt = coloursOptions[i];
-    var el = document.createElement("option");
-    el.textContent = opt;
-    el.value = opt;
-    selectColours.appendChild(el);
+  if (container.style.display === "none") {
+    container.style.display = "block";
+    const select = container.querySelector("select");
+    select.setAttribute("required", "");
+    const selectColours = document.getElementById("selectColours");
+    const coloursOptions = newVariantColours.split(",");
+    for (var i = 0; i < coloursOptions.length; i++) {
+      var opt = coloursOptions[i];
+      var el = document.createElement("option");
+      el.textContent = opt;
+      el.value = opt;
+      selectColours.appendChild(el);
+    }
   }
 }
 
@@ -64,17 +68,19 @@ const newVariantSizes = (document.getElementById("product-variant-size") || {})
   .value;
 if (newVariantSizes != "") {
   const container = document.getElementById("variant_size_container");
-  container.style.display = "block";
-  const select = container.querySelector("select");
-  select.setAttribute("required", "");
-  const selectSizes = document.getElementById("selectSizes");
-  const sizesOptions = newVariantSizes.split(",");
-  for (var i = 0; i < sizesOptions.length; i++) {
-    var opt = sizesOptions[i];
-    var el = document.createElement("option");
-    el.textContent = opt;
-    el.value = opt;
-    selectSizes.appendChild(el);
+  if (container.style.display === "none") {
+    container.style.display = "block";
+    const select = container.querySelector("select");
+    select.setAttribute("required", "");
+    const selectSizes = document.getElementById("selectSizes");
+    const sizesOptions = newVariantSizes.split(",");
+    for (var i = 0; i < sizesOptions.length; i++) {
+      var opt = sizesOptions[i];
+      var el = document.createElement("option");
+      el.textContent = opt;
+      el.value = opt;
+      selectSizes.appendChild(el);
+    }
   }
 }
 
