@@ -95,7 +95,7 @@ if (creaEmbedOrderForm)
     const state = (document.getElementById("embedState") || {}).value;
     const area = (document.getElementById("embedArea") || {}).value;
     const phone = (document.getElementById("embedPhone") || {}).value;
-    const altphone = (document.getElementById("embedPhone2") || {}).value;
+    const altPhone = (document.getElementById("embedPhone2") || {}).value;
     const qty = (document.getElementById("embedQty") || {}).value;
     const size = (selectSizes.options[selectSizes.selectedIndex] || {}).value;
     const colour = (selectColours.options[selectColours.selectedIndex] || {})
@@ -140,7 +140,7 @@ if (creaEmbedOrderForm)
       state,
       area,
       phone,
-      altphone,
+      altPhone,
       productEmbedQty,
       productEmbedTotal,
       colour,
@@ -163,7 +163,7 @@ const createOrderAPI = async (
   state,
   area,
   phone,
-  altphone,
+  altPhone,
   qty,
   total,
   colour,
@@ -183,7 +183,7 @@ const createOrderAPI = async (
         state,
         area,
         phone,
-        altphone,
+        altPhone,
         qty,
         total,
         colour,
