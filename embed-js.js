@@ -7,10 +7,22 @@ if (onePriceQty > 0) {
   justify_delivery_info.style.display = "none";
   const input = container.querySelector("input");
   input.setAttribute("required", "");
-  $("#show_Product_Quantity").on("keyup click", function () {
-    const tot = $("#product_price_hidden").val() * this.value;
+
+  function showPriceString(e) {
+    const inputValue = e.target.value;
+    const tot =
+      document.getElementById("product_price_hidden").value * inputValue;
     const total = `That's ₦${tot.toLocaleString()}`;
-    $("#show_Product_total").val(total);
+    document.getElementById("show_Product_total").value = total;
+  }
+
+  const showProductQTY = document.getElementById("show_Product_Quantity");
+
+  showProductQTY.addEventListener("keyup", (e) => {
+    showPriceString(e);
+  });
+  showProductQTY.addEventListener("click", (e) => {
+    showPriceString(e);
   });
 } else {
   const newVariantPrice = document.getElementById("product-variant-price")
@@ -38,7 +50,6 @@ if (onePriceQty > 0) {
     const locPromoPriceValue = parseInt(promoPriceValue);
     const deliveryTotalInfo = document.getElementById("show_total_price");
     deliveryTotalInfo.innerHTML = `₦${locPromoPriceValue.toLocaleString()}`;
-    // console.log(locPromoPriceValue);
   });
 }
 
@@ -89,24 +100,21 @@ if (creaEmbedOrderForm)
   creaEmbedOrderForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const submitButton = creaEmbedOrderForm.querySelector('[type="submit"]');
-    const email = (document.getElementById("embedEmail") || {}).value;
-    const name = (document.getElementById("embedName") || {}).value;
-    const address = (document.getElementById("embedAddress") || {}).value;
-    const state = (document.getElementById("embedState") || {}).value;
-    const area = (document.getElementById("embedArea") || {}).value;
-    const phone = (document.getElementById("embedPhone") || {}).value;
-    const altPhone = (document.getElementById("embedPhone2") || {}).value;
-    const qty = (document.getElementById("embedQty") || {}).value;
-    const size = (selectSizes.options[selectSizes.selectedIndex] || {}).value;
-    const colour = (selectColours.options[selectColours.selectedIndex] || {})
+    const submitButtonText = document.getElementById("submitButtonText").value;
+    const email = document.getElementById("embedEmail").value;
+    const name = document.getElementById("embedName").value;
+    const address = document.getElementById("embedAddress").value;
+    const state = document.getElementById("embedState").value;
+    const area = document.getElementById("embedArea").value;
+    const phone = document.getElementById("embedPhone").value;
+    const altPhone = document.getElementById("embedPhone2").value;
+    const size = selectSizes.options[selectSizes.selectedIndex].value;
+    const colour = selectColours.options[selectColours.selectedIndex].value;
+    const product = document.getElementById("embedProduct").value;
+    const businessAccount = document.getElementById("embedBusinessAccount")
       .value;
-    const product = (document.getElementById("embedProduct") || {}).value;
-    const businessAccount = (
-      document.getElementById("embedBusinessAccount") || {}
-    ).value;
 
-    const onePriceQty = (document.getElementById("product_price_hidden") || {})
-      .value;
+    const onePriceQty = document.getElementById("product_price_hidden").value;
 
     if (onePriceQty > 0) {
       var productEmbedQty = document.getElementById("show_Product_Quantity")
@@ -124,13 +132,8 @@ if (creaEmbedOrderForm)
       const total = productQtyValue.split("= ₦")[1];
       var productEmbedTotal = parseInt(total);
     }
-
-    submitButton.classList.add("btnLoadingSpiner");
-    submitButton.disabled = true;
-    setTimeout(() => {
-      submitButton.classList.remove("btnLoadingSpiner"),
-        (submitButton.disabled = false);
-    }, 200000);
+    console.log(submitButtonText);
+    submitButton.innerHTML = "Processing Order...";
     createOrderAPI(
       businessAccount,
       product,
@@ -145,14 +148,10 @@ if (creaEmbedOrderForm)
       productEmbedTotal,
       colour,
       size,
-      submitButton
+      submitButton,
+      submitButtonText
     );
   });
-
-const stopLoadingBtnSpinner = (submitButton) => {
-  submitButton.classList.remove("btnLoadingSpiner");
-  submitButton.disabled = false;
-};
 
 const createOrderAPI = async (
   businessAccount,
@@ -168,7 +167,8 @@ const createOrderAPI = async (
   total,
   colour,
   size,
-  submitButton
+  submitButton,
+  submitButtonText
 ) => {
   try {
     const res = await axios({
@@ -209,9 +209,12 @@ const createOrderAPI = async (
       }
     }
   } catch (err) {
-    stopLoadingBtnSpinner(submitButton);
+    submitButton.innerHTML = submitButtonText;
+
     if (err.response) {
       alert(err.response.data.message);
-    } else alert(`Unable to create this order, kindly retry. Thanks`);
+      console.log(err.response.data.message);
+    } else console.log(err);
+    alert(`Unable to create this order, kindly retry. Thanks`);
   }
 };
